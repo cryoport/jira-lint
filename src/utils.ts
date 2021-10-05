@@ -324,7 +324,7 @@ export const getNoIdComment = (branch: string): string => {
 <p>Your branch: ${branch}</p>
 <p>If this is your first time contributing to this repository - welcome!</p>
 <hr />
-<p>Please refer to <a href="https://github.com/cleartax/jira-lint">jira-lint</a> to get started.
+<p>Please refer to <a href="https://github.com/cryoport/jira-lint">jira-lint</a> to get started.
 <p>Without the JIRA Issue ID in your branch name you would lose out on automatic updates to JIRA via SCM; some GitHub status checks might fail.</p>
 Valid sample branch names:
 
@@ -345,6 +345,9 @@ export const isIssueStatusValid = (
     return true;
   }
 
+  core.info(allowedIssueStatuses[0]);
+  core.info(`ticket status is: ${details.status}`);
+
   return allowedIssueStatuses.includes(details.status);
 };
 
@@ -355,7 +358,7 @@ export const getInvalidIssueStatusComment = (
   /** Threshold of additions allowed. */
   allowedStatuses: string
 ): string =>
-  `<p>:broken_heart: The detected issue is not in one of the allowed statuses :broken_heart: </p>    
+  `<p>:broken_heart: The detected issue is not in one of the allowed statuses :broken_heart: </p>
    <table>
      <tr>
         <th>Detected Status</th>

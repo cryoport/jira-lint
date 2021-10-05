@@ -3,10 +3,10 @@
 > A light-weight lint workflow when using GitHub along with [JIRA][jira] for project management.
 > Ported from [pivotal-lint](https://github.com/ClearTax/pivotal-lint/) for similar usage with Atlassian's Jira Software.
 
-![GitHub package.json version](https://img.shields.io/github/package-json/v/cleartax/jira-lint?style=flat-square)
-[![GitHub](https://img.shields.io/github/license/cleartax/jira-lint?style=flat-square)](https://github.com/cleartax/jira-lint/blob/master/LICENSE.md)
+![GitHub package.json version](https://img.shields.io/github/package-json/v/cryoport/jira-lint?style=flat-square)
+[![GitHub](https://img.shields.io/github/license/cryoport/jira-lint?style=flat-square)](https://github.com/cryoport/jira-lint/blob/master/LICENSE.md)
 [![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors)
-![build & test](https://github.com/ClearTax/jira-lint/workflows/lint,%20build%20&%20test/badge.svg)
+![build & test](https://github.com/cleartax/jira-lint/workflows/lint,%20build%20&%20test/badge.svg)
 
 ---
 
@@ -41,7 +41,7 @@ jobs:
   jira-lint:
     runs-on: ubuntu-latest
     steps:
-      - uses: cleartax/jira-lint@master
+      - uses: cryoport/jira-lint@master
         name: jira-lint
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
@@ -56,14 +56,14 @@ It can also be used as part of an existing workflow by adding it as a step. More
 
 ### Semantic Versions
 
-If you want more stability in versions of `jira-lint` than `@master` you can also use the [semantic releases for jira-lint](https://github.com/cleartax/jira-lint/releases).
+If you want more stability in versions of `jira-lint` than `@master` you can also use the [semantic releases for jira-lint](https://github.com/cryoport/jira-lint/releases).
 
 Example:
 
 ```yaml
 # ...
 steps:
-  - uses: cleartax/jira-lint@v0.0.1
+  - uses: cryoport/jira-lint@v0.0.1
     name: jira-lint
     # ...
 ```
@@ -98,7 +98,7 @@ When a PR passes the above check, `jira-lint` will also add the issue details to
 
 #### Issue Status Validation
 Issue status is shown in the [Description](#description).
-**Why validate issue status?** 
+**Why validate issue status?**
 In some cases, one may be pushing changes for a story that is set to `Done`/`Completed` or it may not have been pulled into working backlog or current sprint.
 
  This option allows discouraging pushing to branches for stories that are set to statuses other than the ones allowed in the project; for example - you may want to only allow PRs for stories that are in `To Do`/`Planning`/`In Progress` states.
@@ -110,7 +110,7 @@ The following flags can be used to validate issue status:
   - This will only be used when `validate_issue_status` is `true`. This should be a comma separated list of statuses. If the detected issue's status is not in one of the `allowed_issue_statuses` then `jira-lint` will fail the status check.
 
 **Example of invalid status**
-  <p>:broken_heart: The detected issue is not in one of the allowed statuses :broken_heart: </p>    
+  <p>:broken_heart: The detected issue is not in one of the allowed statuses :broken_heart: </p>
       <table>
         <tr>
             <th>Detected Status</th>
@@ -124,7 +124,7 @@ The following flags can be used to validate issue status:
           </tr>
       </table>
   <p>Please ensure your jira story is in one of the allowed statuses</p>
-    
+
 #### Soft-validations via comments
 
 `jira-lint` will add comments to a PR to encourage better PR practices:
@@ -187,9 +187,9 @@ Note: The user should have the [required permissions (mentioned under GET Issue)
 
 ### Skipping branches
 
-Since GitHub actions take string inputs, `skip-branches` must be a regex which will work for all sets of branches you want to ignore. This is useful for merging protected/default branches into other branches. Check out some [examples in the tests](https://github.com/ClearTax/jira-lint/blob/08a47ab7a6e2bc235c9e34da1d14eacf9d810bd1/__tests__/utils.test.ts#L33-L44).
+Since GitHub actions take string inputs, `skip-branches` must be a regex which will work for all sets of branches you want to ignore. This is useful for merging protected/default branches into other branches. Check out some [examples in the tests](https://github.com/cryoport/jira-lint/blob/08a47ab7a6e2bc235c9e34da1d14eacf9d810bd1/__tests__/utils.test.ts#L33-L44).
 
-`jira-lint` already skips PRs which are filed by bots (for eg. [dependabot](https://github.com/marketplace/dependabot-preview)). You can add more bots to [this list](https://github.com/ClearTax/jira-lint/blob/08a47ab7a6e2bc235c9e34da1d14eacf9d810bd1/src/constants.ts#L4), or add the branch-format followed by the bot PRs to the `skip-branches` option.
+`jira-lint` already skips PRs which are filed by bots (for eg. [dependabot](https://github.com/marketplace/dependabot-preview)). You can add more bots to [this list](https://github.com/cryoport/jira-lint/blob/08a47ab7a6e2bc235c9e34da1d14eacf9d810bd1/src/constants.ts#L4), or add the branch-format followed by the bot PRs to the `skip-branches` option.
 
 ## Contributing
 
@@ -225,8 +225,8 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <!-- markdownlint-disable -->
 <table>
   <tr>
-    <td align="center"><a href="http://hacktivist.in"><img src="https://avatars3.githubusercontent.com/u/4851763?v=4" width="100px;" alt=""/><br /><sub><b>Raj Anand</b></sub></a><br /><a href="https://github.com/ClearTax/jira-lint/commits?author=rajanand02" title="Code">💻</a> <a href="https://github.com/ClearTax/jira-lint/pulls?q=is%3Apr+reviewed-by%3Arajanand02" title="Reviewed Pull Requests">👀</a> <a href="#ideas-rajanand02" title="Ideas, Planning, & Feedback">🤔</a></td>
-    <td align="center"><a href="https://aditimohanty.com/?utm_source=github&utm_medium=documentation-allcontributors&utm_content=jira-lint"><img src="https://avatars3.githubusercontent.com/u/6426069?v=4" width="100px;" alt=""/><br /><sub><b>Aditi Mohanty</b></sub></a><br /><a href="https://github.com/ClearTax/jira-lint/commits?author=rheaditi" title="Code">💻</a> <a href="https://github.com/ClearTax/jira-lint/commits?author=rheaditi" title="Documentation">📖</a> <a href="#infra-rheaditi" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a></td>
+    <td align="center"><a href="http://hacktivist.in"><img src="https://avatars3.githubusercontent.com/u/4851763?v=4" width="100px;" alt=""/><br /><sub><b>Raj Anand</b></sub></a><br /><a href="https://github.com/cryoport/jira-lint/commits?author=rajanand02" title="Code">💻</a> <a href="https://github.com/cryoport/jira-lint/pulls?q=is%3Apr+reviewed-by%3Arajanand02" title="Reviewed Pull Requests">👀</a> <a href="#ideas-rajanand02" title="Ideas, Planning, & Feedback">🤔</a></td>
+    <td align="center"><a href="https://aditimohanty.com/?utm_source=github&utm_medium=documentation-allcontributors&utm_content=jira-lint"><img src="https://avatars3.githubusercontent.com/u/6426069?v=4" width="100px;" alt=""/><br /><sub><b>Aditi Mohanty</b></sub></a><br /><a href="https://github.com/cryoport/jira-lint/commits?author=rheaditi" title="Code">💻</a> <a href="https://github.com/cryoport/jira-lint/commits?author=rheaditi" title="Documentation">📖</a> <a href="#infra-rheaditi" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a></td>
     <td align="center"><a href="https://github.com/dustman9000"><img src="https://avatars0.githubusercontent.com/u/3944352?v=4" width="100px;" alt=""/><br /><sub><b>Dustin Row</b></sub></a><br /><a href="https://github.com/ClearTax/jira-lint/pulls?q=is%3Apr+reviewed-by%3Adustman9000" title="Reviewed Pull Requests">👀</a></td>
     <td align="center"><a href="https://github.com/richardlhao"><img src="https://avatars1.githubusercontent.com/u/60636550?v=4" width="100px;" alt=""/><br /><sub><b>richardlhao</b></sub></a><br /><a href="https://github.com/ClearTax/jira-lint/commits?author=richardlhao" title="Code">💻</a></td>
     <td align="center"><a href="https://www.nimeshjm.com/"><img src="https://avatars3.githubusercontent.com/u/2178497?v=4" width="100px;" alt=""/><br /><sub><b>Nimesh Manmohanlal</b></sub></a><br /><a href="https://github.com/ClearTax/jira-lint/commits?author=nimeshjm" title="Documentation">📖</a></td>

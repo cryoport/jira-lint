@@ -1,0 +1,40 @@
+# This is a basic workflow to help you get started with Actions
+name: JIRA Linter
+
+# Controls when the workflow will run
+on:
+  pull_request:
+    branches: [ master ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+
+      - name: jira-lint
+        uses: cryoport/jira-lint@0.0.2
+        with:
+          # Token used to update PR description and add labels. Can be passed in using {{ secrets.GITHUB_TOKEN }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          # API Token used to access the JIRA REST API. Must have read access to your JIRA Projects & Issues.
+          jira-token: ${{ secrets.JIRA_TOKEN }}
+          # The subdomain of JIRA cloud that you use to access it. Ex: "https://your-domain.atlassian.net"
+          jira-base-url:  "https://cryoportal.atlassian.net"
+          # A regex to ignore running on certain branches, like production etc.
+          skip-branches: 'dependabot|release|master|production-release'
+          # A boolean if set to true, will skip adding lint comments for PR title.
+          skip-comments: true
+          # An `Integer` based on which jira-lint add a comment discouraging huge PRs. Is disabled by `skip-comments`
+          pr-threshold: 800
+          validate_issue_status: true
+          allowed_issue_statuses: "Ready for Review"
